@@ -1,5 +1,5 @@
 import React from 'react'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, HashRouter } from 'react-router-dom' // Changed to HashRouter
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Home from './pages/Home'
@@ -18,27 +18,29 @@ import { WishlistProvider } from './context/WishlistContext'
 
 const App = () => {
   return (
-    <CartProvider>
-      <WishlistProvider>
-        <div className="min-h-screen bg-gray-50">
-          <Navbar />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/services" element={<Services />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/shop" element={<Shop />} />
-            <Route path="/product/:id" element={<ProductDetail />} />
-            <Route path="/checkout" element={<Checkout />} />
-            <Route path="/checkout/success" element={<CheckoutSuccess />} />
-            <Route path="/orders" element={<OrderHistory />} />
-            <Route path="/wishlist" element={<Wishlist />} />
-          </Routes>
-          <CartMenu />
-          <Footer />
-        </div>
-      </WishlistProvider>
-    </CartProvider>
+    <HashRouter> {/* Changed from BrowserRouter to HashRouter */}
+      <CartProvider>
+        <WishlistProvider>
+          <div className="min-h-screen bg-gray-50">
+            <Navbar />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/services" element={<Services />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/shop" element={<Shop />} />
+              <Route path="/product/:id" element={<ProductDetail />} />
+              <Route path="/checkout" element={<Checkout />} />
+              <Route path="/checkout/success" element={<CheckoutSuccess />} />
+              <Route path="/orders" element={<OrderHistory />} />
+              <Route path="/wishlist" element={<Wishlist />} />
+            </Routes>
+            <CartMenu />
+            <Footer />
+          </div>
+        </WishlistProvider>
+      </CartProvider>
+    </HashRouter>
   )
 }
 
